@@ -1,0 +1,30 @@
+{% extends 'layouts/base.html.twig' %}
+
+{% block title %}Profil !{% endblock %}
+
+{% block body %}
+
+<div class="row">
+    <div class="col-md-6 mx-auto text-center">
+        <h1 class="my-5">Votre Profil</h1>
+        <p><small>Compte créer le {{ app.user.createdAt| date('d/m/y à s:m:i') }}</small></p>
+
+        <!--<img src="../Avatar/avatar.jpg" alt="" width="150px" height="100px" style="border-radius:100%;">-->
+        <img src="{{ app.user.gravatar }}" alt="Avatar de {{ app.user.fullname }}" class="rounded-circle">
+
+        <h2 class="mt-5">{{ app.user.fullname }}</h2>
+        <p class="lead">{{ app.user.email }}</p>
+
+        <p class="py-2">
+                {% if is_granted('ROLE_ADMIN') %}
+                
+                <p class="text-info"> <small> Vous avez publié: {{ pluralize(app.user.pins|length,'Jeu','Jeux') }}</p></small>
+
+                {% endif %}
+
+        <a href="{{ path('app_account_edit') }}" class="text-decoration-none">Editer Compte</a> | <a href="{{ path('app_account_change_password') }}" class="text-decoration-none">Changer votre mot de passe</a>
+        </p>
+    </div>
+</div>
+
+{% endblock %}

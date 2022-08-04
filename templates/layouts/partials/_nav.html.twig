@@ -1,0 +1,52 @@
+
+ <!--<nav class="navbar navbar-default" style="background:#7298ff;font-family: 'Times New Roman', Times, serif;font-size:17px;">
+ <div class="container">
+ <div class="navbar-header">
+  <a class="navbar-brand"  href="{{path('app_home')}}" style="font-size:30px;">VidCom</a>
+   </div>
+ <ul class="nav navbar-nav navbar-right">
+    <li><a href="{{path('app_home')}}">Menu</a></li>
+    <li class="center"><a href="{{path('app_pins_create')}}">Nouveau Pin</a></li>
+    <li class="forward"><a href="#"><span class="glyphicon glyphicon-asterisk"></span>Se Deconnecter</a></li>
+</ul>
+  </div>
+  </nav>-->
+
+  <div class="navbar ml-auto fixed-top pt-0">
+    <ul class="nav-links ml-auto">
+  <a class="navbar-brand text-decoration-none text-dark"  href="#" style="font-size:30px;">&looparrowleft; MoutBlog &looparrowright;</a>
+
+        <li class="center"><a href="{{path('app_home')}}">Home</a></li>
+
+        {% if app.user %}
+
+          {% if is_granted('ROLE_ADMIN') %}
+          
+          <li class="center"><a href="{{path('app_pins_create')}}">Nouveau jeu</a></li>
+
+          {% endif %}
+
+
+
+          <li class="center"><a href="{{path('app_account')}}">Compte</a></li>
+
+          
+
+          <li class="center" style="margin-left:auto;"><a href="#" onclick="event.preventDefault(); document.getElementById('js-logout-form').submit();">Logout &#10148;</a></li>
+
+          <form id="js-logout-form" action="{{path('app_logout')}}" method="POST" style="display: none;">
+              <input type="hidden" name="csrf_token" value="{{ csrf_token('logout') }}">
+          </form>
+          <li class="center">{{ render(controller('App\\Controller\\SearchController::searchBar')) }}</li>
+          
+
+        {% else %}  
+          <li class="center"><a href="{{path('app_register')}}">Register</a></li> 
+          <li class="center"><a  href="{{path('app_login')}}">Login</a></li>
+        {% endif %}  
+        
+  </ul>
+  </div>
+  <br>
+  <br><br>
+

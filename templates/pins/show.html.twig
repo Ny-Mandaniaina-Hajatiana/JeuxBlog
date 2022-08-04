@@ -1,0 +1,79 @@
+{% extends 'layouts/base.html.twig' %}
+{% block title pin.title %}
+
+
+{% block body %}
+
+<div class="row pt-5">
+    <div class="col-md-6 mx-auto w-100">
+    
+           <article class="pin bg-white rounded shadow">
+    
+    <div class="mw-100 rounded overflow-hidden">    
+     <a>
+                         
+            <img src="{{ (pin.imageName ? vich_uploader_asset(pin) : asset('build/images/placeholder.jpg')) 
+            | imagine_filter('squared_thumbnail_medium')}}" alt="{{ pin.title }}" class="w-100 rounded"/>
+    </a>    
+    </div>
+            <!--Chemin pour afficher un Pin en les parcourant par id-->
+            <h1 class="h5 text-center pt-3"><a class="text-secondary  text-decoration-none"><b>{{pin.title}}</b></a></h1>
+            <p class="m-4 pt-3 pr-3">{{pin.description|u.truncate(5000)}}</p><!--LImite les caractères à afficher à 5000-->
+            
+            <p class="card-footer pl-3 pb-3 text-center">
+            Créer le {{pin.createdAt | date('d-m-Y à H:i:i')}} par <small>{{pin.user.fullName}}</small>
+            </p> <!--ago est fourni par knplabs/knp-time-bundle-->
+            
+            {% if app.user == pin.user and is_granted('ROLE_ADMIN')%}  
+                   
+
+        <div class="pb-3" style="margin-left:8px;">                   
+                    
+                    
+                <button class="btn btn-light" style="background-color:rgb(235, 235, 235);">
+                    <a style="text-decoration: none; color:black;" href="{{ path('app_pins_edit', {id: pin.id}) }}">Modifier le Pin</a></button>
+    
+                <button class="btn btn-light" style="background-color:rgb(235, 235, 235); "><a style="text-decoration: none; color:red;" href="#" onclick="event.preventDefault(); confirm('Supprimer?') && document.getElementById('js-pin-delete-form').submit();">&times; Supprimer Le Pin</a></button>
+
+            
+    <form id="js-pin-delete-form" action="{{ path('app_pins_delete', {id: pin.id}) }}" method="delete" style="display: none;">
+                    <input type="hidden" name="_csrf_token" action="{{csrf_token('pin_delete' ~ pin.id)}}">
+                    <input type="hidden" name="_method" value="DELETE">
+            
+    </form>
+    
+               
+        </div>
+        
+        {% endif %}
+        
+    </article>
+
+
+   </div>  
+   
+   <h5 class="comment-title mt-5">
+       <span id="comment-count">{{ pin.comments|length }} commentaire(s)</span>
+    </h5>
+
+    <hr>
+
+    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+              
+    <div class="comment-area mb-5">
+              {{ form(commentForm, {'attr':{'class':'comment-form'}}) }}
+    </div>
+
+    {% endif %}
+    <div class="comment-list">
+
+            {% for comment in pin.comments %}
+
+                {% include 'comment/index.html.twig' with [comment] %}
+                
+            {% endfor %}
+    </div>
+
+</div>
+
+{% endblock %}

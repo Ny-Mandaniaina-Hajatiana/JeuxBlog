@@ -1,0 +1,58 @@
+ {% extends 'layouts/base.html.twig' %}
+
+{% block title %}Hello Visitor{% endblock %}
+
+{% block body %}
+    {% if pins|length > 0 %}
+
+
+<h1  class="mb-4 pt-5 text-center text-muted">{{pluralize(pins|length, 'Jeu','Jeux')}}</h1>
+
+<hr>
+{% for row in pins|batch(3)%}{#afficher les pins 2/2#}
+<div class="row mb-4">
+    
+
+{% for pin in row %}
+<div class="col-md-4">
+    
+    <article class="pin bg-white rounded shadow">
+    
+    <div class="mw-100 rounded overflow-hidden">    
+     <a href="{{path('app_pins_show', {id: pin.id}) }}">
+                        
+            <!--Chemin pour afficher un Pin en les parcourant par id-->
+            <img src="{{ (pin.imageName ? vich_uploader_asset(pin) : asset('build/images/placeholder.jpg')) 
+            | imagine_filter('squared_thumbnail_medium')}}" alt="{{ pin.title }}" class="w-100 rounded"/>
+    </a>    
+    </div>
+   
+            <h1 class="h5 text-center pt-3"><b><a class="text-dark text-decoration-none fst-italic" href="{{path('app_pins_show', {id: pin.id}) }}">{{pin.title}}</a></b></h1>
+            <p class="text-center text-muted">{{pin.description|u.truncate(30)}} ...</p><!--LImite les caractères à 30-->
+            <p class="card-footer pl-3 pb-3 text-center" >Créer {{pin.createdAt | ago}} par <small>{{pin.user.FullName}}  {#{{pin.user.lastName}}#}</small></p> <!--ago est fourni par knplabs/knp-time-bundle-->
+
+            <!--<a href="#" onclick="event.preventDefault(); confirm('Supprimer?') && document.getElementById('js-pin-delete-form-{{ pin.id }}').submit();" class="m-3 btn btn-danger">&times; Supprimmer</a>
+
+            <form id="js-pin-delete-form-{{ pin.id }}" action="{{ path('app_pins_delete', {id: pin.id}) }}" method="delete" style="display: none;">
+                    <input type="hidden" name="_csrf_token" action="{{csrf_token('pin_delete' ~ pin.id)}}">
+                    <input type="hidden" name="_method" value="DELETE">
+            
+            </form>-->
+
+    </article>
+    
+    </div>
+    
+    
+{% endfor %}
+</div>
+{% endfor %}
+{% else %}
+    <p class="h1 mt-5 text-center">Pas encore de Pins. <a href="{{ path('app_pins_create') }}">Soyez le Premier</a></p>
+{% endif %}
+<hr>
+
+{{ knp_pagination_render(pins) }}
+
+
+{% endblock %}

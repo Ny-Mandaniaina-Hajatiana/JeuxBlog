@@ -1,0 +1,20 @@
+ {% extends 'layouts/base.html.twig' %}
+
+{% block title %}New game{% endblock %}
+
+{% block body %}
+
+<div class="row">
+
+        <div  class="col-md-6 py-4 px-3 mt-5 rounded shadow"  style="margin-left: 25%;">
+                <h1>Ajouter Votre Jeu</h1>
+            
+                {{include('pins/_form.html.twig', {submitButtonText: 'Creer'})}}
+           
+        </div>
+
+</div>
+
+
+    
+{% endblock %}

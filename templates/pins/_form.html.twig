@@ -1,0 +1,18 @@
+{{ form_start(form) }}<!--Début du formulaire-->
+ {{ form_widget(form) }}<!--Ajout des champs-->
+        
+        <input type="submit" class="btn btn-primary mb-3" value="{{submitButton ?? 'Creer Le Jeu'}}" formnovalidate>
+    {{ form_end(form) }}<!--Fin du formulaire-->
+
+     {# {{ form_start(form) }}<!--Début du formulaire-->
+ <div class="row">{{ form_row(form.title) }}<!--Ajout des champs-->
+ {{ form_row(form.description) }}
+ {{ form_row(form.imageFile) }} 
+ </div>
+
+ <div class="error">{{ form_errors(form) }}<!--Ajout des champs-->
+ 
+ </div>
+        
+        <input type="submit" class="btn btn-primary" value="{{submitButton ?? 'Creer Le Pin'}}" formnovalidate>
+    {{ form_end(form) }}<!--Fin du formulaire-->#}
