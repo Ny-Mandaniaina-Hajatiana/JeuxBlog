@@ -34,14 +34,16 @@ class SearchController extends AbstractController
             'label' => false,
             'attr' => [
                 'class' => 'form-control',
-                'placeholder' => 'Tapez votre recherche'
+                'placeholder' => 'Tapez votre recherche',
+                'style' => 'margin-top:15px;'
             ]
         ])
         ->add('recherche',
         SubmitType::class,[
             'label' => 'Rechercher',
             'attr' => [
-                'class' => 'btn btn-secondary',               
+                'class' => 'btn', 
+                'style' => 'color:#fff; background-color:#dc3545;margin-top:15px'              
             ]
         ])
         ->getForm();

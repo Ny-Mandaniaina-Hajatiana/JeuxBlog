@@ -30,8 +30,12 @@ class PinType extends AbstractType
                 //'image_uri' => true,                
                 //'asset_helper' =>true,
             ])
-            ->add('title', TextType::class)
-            ->add('description', TextareaType::class)
+            ->add('title', TextType::class,[
+                'label' => 'Titre du Jeu'
+            ])
+            ->add('description', TextareaType::class,[
+                'label' => 'Contenu'
+            ])
            
         ;
     }

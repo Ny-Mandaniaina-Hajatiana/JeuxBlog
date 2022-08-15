@@ -5,7 +5,7 @@
 {% block body %}
 
 <div class="row">
-    <div class="col-md-6 mx-auto text-center">
+    <div class="col-md-6 mx-auto text-center mt-5 rounded shadow">
         <h1 class="my-5">Votre Profil</h1>
         <p><small>Compte créer le {{ app.user.createdAt| date('d/m/y à s:m:i') }}</small></p>
 
@@ -18,12 +18,13 @@
         <p class="py-2">
                 {% if is_granted('ROLE_ADMIN') %}
                 
-                <p class="text-info"> <small> Vous avez publié: {{ pluralize(app.user.pins|length,'Jeu','Jeux') }}</p></small>
+                <p class="text-secondary"> <small> Vous avez publié: {{ pluralize(app.user.pins|length,'Jeu','Jeux') }}</p></small>
 
                 {% endif %}
 
-        <a href="{{ path('app_account_edit') }}" class="text-decoration-none">Editer Compte</a> | <a href="{{ path('app_account_change_password') }}" class="text-decoration-none">Changer votre mot de passe</a>
+        <a href="{{ path('app_account_edit') }}" class="btn text-decoration-none" style="background-color:#dc3545;color:white;font-size:15px;">Editer Compte</a>  <a href="{{ path('app_account_change_password') }}" class="btn text-decoration-none" style="background-color:#dc3545;color:white;font-size:15px;">Changer votre mot de passe</a>
         </p>
+        <br>
     </div>
 </div>
 

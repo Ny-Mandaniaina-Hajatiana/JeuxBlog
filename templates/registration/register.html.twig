@@ -5,7 +5,7 @@
 {% block body %}
 
     <div class="row">
-        <div class="col-md-6 mx-auto">
+        <div class="col-md-6 mx-auto rounded shadow-lg">
                 {% for flashError in app.flashes('verify_email_error') %}
                 <div class="alert alert-danger" role="alert">{{ flashError }}</div>
             {% endfor %}
@@ -35,15 +35,16 @@
                 }) }}
                 {{ form_row(registrationForm.agreeTerms) }}
 
-                <button type="submit" class="btn btn-primary btn-lg btn-center">S'authentifier</button>
+                <button type="submit" class="btn btn-lg btn-center" style="background-color:#dc3545;color:white;margin-left:30%;">S'authentifier</button>
 
                         <p class="mt-5 mb-3 text-center text-muted">
-                                Vous avez déjà un compte <a href="{{ path('app_login') }}" class="text-decoration-none">Se connecter</a>
-                        </p>
+                                Vous avez déjà un compte <a href="{{ path('app_login') }}" class="text-decoration-none" style="color:#dc3545;">Se connecter</a>
+                        </p><br>
 
             {{ form_end(registrationForm) }}    
         </div>
     </div>
+    
 
    
     

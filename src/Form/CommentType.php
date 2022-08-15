@@ -28,7 +28,11 @@ class CommentType extends AbstractType
         ->add('pin', HiddenType::class)
         
         ->add('send', SubmitType::class,[
-            'label' => 'Commenter'
+            'label' => 'Commenter',
+            'attr' => [
+                'class' => 'btn', 
+                'style' => 'color:#fff; background-color:#dc3545;margin-top:15px'
+            ]
         ]);
             $builder->get('pin')
             ->addModelTransformer(new CallbackTransformer(

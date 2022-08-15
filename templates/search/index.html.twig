@@ -10,29 +10,36 @@
             <h2 class="text-center pt-5 text-muted">Aucun résultat trouvé pour votre recherche</h2>
 
             {% else %}
-            <h1  class="mb-4 text-center text-muted">{{pluralize(pins|length, 'Jeu','Jeux')}} trouvé</h1>
-                <h3 class="mt-3">Résultat(s) de votre recherche :</h3>
+            <h1  class="mb-4 text-center text-muted">{{pluralize(pins|length, 'Jeu trouvé','Jeux trouvés')}} </h1>
+            <hr>
+                <h3 class="mt-3">Résltat(s) de votre recherche :</h3>
 
                 {% for pin in pins %}
 
-                <div class="mt-3 p-3 bg-light border rounded">
+            <center> <div class="sary col-md-5 mt-3 border rounded shadow">
                     <a href="{{path('app_pins_show', {'id':pin.id})}}" class="text-decoration-none">
                             
-                        <img src="{{ (pin.imageName ? vich_uploader_asset(pin) : asset('build/images/placeholder.jpg')) 
-                            | imagine_filter('squared_thumbnail_medium')}}" alt="{{ pin.title }}" class="w-40 rounded pb-2"/>
+                        <img class="w-100 p-2" src="{{ (pin.imageName ? vich_uploader_asset(pin) : asset('build/images/placeholder.jpg')) 
+                            | imagine_filter('squared_thumbnail_medium')}}" alt="{{ pin.title }}"/>
 
-                        <h6 class="text-dark"><i class="bi bi-arrow-down-right-square-fill text-primary"></i> <span class="text-danger">&cross;</span> {{ pin.title }}</h6>
-
-                        <hr>
-                        <div class="text-dark small p-1 rounded">
-                                Créer le {{pin.createdAt | date('d-m-Y à H:i:i')}} par <i class="text-muted">{{pin.user.fullName}}</i>
+                        <center> 
+                            <h5 class="text-dark pt-0 px-2"><i class="bi bi-arrow-down-right-square-fill text-primary"></i> <span class="text-danger">&cross;</span> {{ pin.title }}
+                            </h5>
+                        </center>
+                       
+                        <div class="card-footer" style="background-color:#5a5c69;color:white;">
+                                <center> Crée le {{pin.createdAt | date('d-m-Y à H:i:i')}} par <i style="color:#dc3545">{{pin.user.fullName}}</i>
+                                </center>
                         </div>
                     </a>
                 </div>
-
+            </center>
                 {% endfor %}
                 {% endif %}
         </div>
+
+        <hr>
+
         {% endif %}
         {% endblock %}            
 

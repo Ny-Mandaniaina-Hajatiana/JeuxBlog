@@ -4,7 +4,7 @@
 
 {% block body %}
 <div class="row">
-    <div class="col-md-6 mx-auto pt-3 my-4 pb-5 rounded shadow">
+    <div class="col-md-6 mx-auto pt-3 my-4 pb-5 mt-5 rounded shadow">
     <h1 class="h3 mb-3 font-weight-normal text-center mt-3">Veuillez vous connecter</h1>
     <form method="post">
     {% if error %}
@@ -38,16 +38,16 @@
                     <input type="checkbox" class="form-check-input" name="_remember_me"> Se souvenir de moi
                 </label>
             </div>
-            <a href="{{ path('app_forgot_password_request') }}" class="text-decoration-none"> Mot de passe oublié</a>
+            <a href="{{ path('app_forgot_password_request') }}" class="text-decoration-none" style="color:#dc3545;"> Mot de passe oublié</a>
         </div>
         
     
 
-    <button class="btn btn-primary btn-block" type="submit">
+    <button class="btn btn-block" style="background-color:#dc3545;color:white; margin-left:37%;" type="submit">
         Se connecter
     </button>
 
-    <p class="mt-5 mb-3 text-center text-muted"> Pas encore authentifier ? <a href="{{path('app_register')}}" class="text-decoration-none">   Créer un compte</a></p>
+    <p class="mt-5 mb-3 text-center text-muted"> Pas encore authentifier ? <a href="{{path('app_register')}}" class="text-decoration-none" style="color:#dc3545;">   Créer un compte</a></p>
 </form>
 </div>
 </div>

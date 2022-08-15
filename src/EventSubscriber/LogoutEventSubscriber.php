@@ -19,7 +19,7 @@ class LogoutEventSubscriber implements EventSubscriberInterface
     public function onLogoutEvent(LogoutEvent $event)
     {
        $event->getRequest()->getSession()->getFlashBag()->add('info', 
-       $event->getToken()->getUser()->getfirstName() . ' vous êtes déconnecter');
+       $event->getToken()->getUser()->getfirstName() . ' vous êtes déconnecté');
 
         $event->setResponse(new RedirectResponse($this->urlGenerator->generate('app_home')));
 

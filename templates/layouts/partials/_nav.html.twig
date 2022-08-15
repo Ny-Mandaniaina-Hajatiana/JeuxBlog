@@ -14,9 +14,9 @@
 
   <div class="navbar ml-auto fixed-top pt-0">
     <ul class="nav-links ml-auto">
-  <a class="navbar-brand text-decoration-none text-dark"  href="#" style="font-size:30px;">&looparrowleft; MoutBlog &looparrowright;</a>
+  <a class="navbar-brand text-decoration-none"  href="#" style="font-size:30px;color:#e43c5c;"><b>&looparrowleft; MoutBlog &looparrowright;</b></a>
 
-        <li class="center"><a href="{{path('app_home')}}">Home</a></li>
+        <li class="center"><a href="{{path('app_home')}}">Accueil</a></li>
 
         {% if app.user %}
 
@@ -32,7 +32,7 @@
 
           
 
-          <li class="center" style="margin-left:auto;"><a href="#" onclick="event.preventDefault(); document.getElementById('js-logout-form').submit();">Logout &#10148;</a></li>
+          <li class="center" style="margin-left:auto;"><a href="#" onclick="event.preventDefault(); document.getElementById('js-logout-form').submit();">Déconnexion <span href="#" style="color:#e43c5c;">&#10148;</span></a></li>
 
           <form id="js-logout-form" action="{{path('app_logout')}}" method="POST" style="display: none;">
               <input type="hidden" name="csrf_token" value="{{ csrf_token('logout') }}">
